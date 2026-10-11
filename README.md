@@ -10,7 +10,7 @@
 
 安装地址：<https://github.com/vioIetMiku/komari-theme-reze/releases/download/v1.2.2/komari-theme-Reze-v1.2.2.zip>
 
-下载后进入 **Komari 管理后台 → 主题管理 → 上传 ZIP → 启用「蕾塞 · 花田守望 / Reze · Golden Hour」**。已有同名主题时，请使用后台提供的更新或覆盖流程，随后刷新首页。
+复制链接后进入 **Komari 管理后台 → 主题管理 → 导入主题→ 启用「蕾塞 · 花田守望 / Reze · Golden Hour」**。已有同名主题时，请使用后台提供的更新或覆盖流程，随后刷新首页。
 
 [版本发布页](https://github.com/vioIetMiku/komari-theme-reze/releases/tag/v1.2.2) · [反馈问题](https://github.com/vioIetMiku/komari-theme-reze/issues)
 
