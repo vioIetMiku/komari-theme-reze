@@ -1,0 +1,563 @@
+{
+  "name": "蕾塞 · 花田守望 / Reze · Golden Hour",
+  "short": "Reze",
+  "description": "蕾塞花田主题：暖金与墨绿玻璃、实时监控、历史图表、服务器对比和轻量角色陪伴。",
+  "version": "1.2.2",
+  "author": "Reze Theme Contributors",
+  "preview": "preview.png",
+  "configuration": {
+    "type": "managed",
+    "name": "蕾塞 · 外观与监控",
+    "data": [
+      {
+        "name": "01 · 主题外观与基础连接",
+        "type": "title"
+      },
+      {
+        "key": "themeMode",
+        "name": "默认主题模式",
+        "type": "select",
+        "default": "dark",
+        "options": "beijing,light,dark",
+        "help": "beijing=北京时间 07:00-18:59 使用明亮模式、其余时间使用夜里模式；light=明亮模式；dark=夜里模式。前端右上角按钮可仅为当前浏览器临时切换。"
+      },
+      {
+        "key": "dataUpdateInterval",
+        "name": "数据更新间隔",
+        "type": "number",
+        "default": 3,
+        "help": "服务器实时数据的刷新间隔，单位：秒，建议设置为 1-10 秒。"
+      },
+      {
+        "key": "rpcTransportMode",
+        "name": "数据连接方式",
+        "type": "select",
+        "default": "http",
+        "options": "http,websocket",
+        "help": "http=兼容性更好的轮询连接；websocket=反向代理支持 WebSocket 时使用实时长连接。"
+      },
+      {
+        "key": "defaultViewMode",
+        "name": "默认服务器视图",
+        "type": "select",
+        "default": "card",
+        "options": "card,list",
+        "help": "card=服务器卡片视图；list=服务器列表视图，对应首页右上角的卡片/列表切换按钮。"
+      },
+      {
+        "key": "nodeCardSize",
+        "name": "服务器卡片尺寸",
+        "type": "select",
+        "default": "compact",
+        "options": "mini,compact,comfortable,large",
+        "help": "mini=迷你高密度；compact=紧凑（默认）；comfortable=舒适；large=宽松。"
+      },
+      {
+        "name": "02 · 首页、地图、场景与彩蛋",
+        "type": "title"
+      },
+      {
+        "key": "alertEnabled",
+        "name": "显示公告",
+        "type": "switch",
+        "default": false,
+        "help": "在首页服务器区域上方显示自定义公告。"
+      },
+      {
+        "key": "alertTitle",
+        "name": "公告标题",
+        "type": "string",
+        "default": "",
+        "help": "公告的标题文字。"
+      },
+      {
+        "key": "alertContent",
+        "name": "公告内容",
+        "type": "richtext",
+        "default": "",
+        "help": "公告的正文，支持简单 Markdown 格式。"
+      },
+      {
+        "key": "stopEarth",
+        "name": "暂停地图亮点呼吸",
+        "type": "switch",
+        "default": false,
+        "help": "暂停地图上服务器亮点的呼吸动画。"
+      },
+      {
+        "key": "hideEarth",
+        "name": "隐藏服务器地图",
+        "type": "switch",
+        "default": false,
+        "help": "隐藏服务器地图，保留左侧首页总览指标。"
+      },
+      {
+        "key": "hideGeneralCard",
+        "name": "隐藏首页总览与地图",
+        "type": "switch",
+        "default": false,
+        "help": "同时隐藏首页顶部的总览指标和服务器地图。"
+      },
+      {
+        "key": "fanLabelsEnabled",
+        "name": "显示场景标签",
+        "type": "switch",
+        "default": false,
+        "help": "为服务器分配不重复的花田场景标签。默认关闭，优先显示原始监控标签。"
+      },
+      {
+        "key": "fanAudioPreviewEnabled",
+        "name": "启用场景片段悬停试听",
+        "type": "switch",
+        "default": false,
+        "help": "服务器卡片悬停时试听对应场景，地图服务器亮点悬停时试听地区映射场景。主题不附带或下载音乐；仅会播放下方配置中由管理员自行提供并确认有权使用的音频。浏览器首次播放前通常需要用户先点击页面。"
+      },
+      {
+        "key": "fanAudioPreviewVolume",
+        "name": "场景片段试听音量",
+        "type": "number",
+        "default": 35,
+        "help": "试听音量百分比，范围 0-100；建议 20-40。"
+      },
+      {
+        "key": "fanAudioPreviewDuration",
+        "name": "单次场景片段时长",
+        "type": "number",
+        "default": 25,
+        "help": "每次悬停最多播放的秒数，主题会限制在 20-30 秒；建议预先裁剪好相同时长的副歌或精彩片段。"
+      },
+      {
+        "key": "fanAudioTrackSources",
+        "name": "场景片段音频映射 JSON",
+        "type": "richtext",
+        "default": "{}",
+        "help": "标签到音频地址的 JSON，例如 {\"金色花田\":\"local:audio/flower.mp3\"}。默认无音频，仅播放管理员自行配置的素材。"
+      },
+      {
+        "key": "regionAudioTracks",
+        "name": "国家或地区场景映射 JSON",
+        "type": "richtext",
+        "default": "{}",
+        "help": "按地区代码配置音频标签，例如 {\"JP\":\"金色花田\"}。仅播放管理员提供的音频文件。"
+      },
+      {
+        "key": "gloriaHeroType",
+        "name": "花田画面素材类型",
+        "type": "select",
+        "default": "image",
+        "options": "image,video",
+        "help": "image=背景图片；video=静音循环背景视频。留空自定义地址时使用内置蕾塞花田原图。"
+      },
+      {
+        "key": "gloriaHeroUrl",
+        "name": "花田画面自定义素材",
+        "type": "string",
+        "default": "",
+        "help": "留空使用内置蕾塞花田原图。可填写 HTTPS 地址或 local:相对路径；请确保拥有素材使用权。"
+      },
+      {
+        "key": "easterEyebrow",
+        "name": "彩蛋上方短句",
+        "type": "string",
+        "default": "GOLDEN HOUR · レゼ",
+        "help": "花田画面上方的短句。"
+      },
+      {
+        "key": "easterSignature",
+        "name": "彩蛋下方署名",
+        "type": "string",
+        "default": "蕾塞 · Reze",
+        "help": "花田画面下方的署名。"
+      },
+      {
+        "key": "easterMapSlogan",
+        "name": "地图彩蛋中间文字",
+        "type": "string",
+        "default": "花开有时，连接不息。",
+        "help": "点击地图右上角按钮后，画面中间的那一句。字号与头像彩蛋相同。"
+      },
+      {
+        "key": "easterAvatarSlogan",
+        "name": "头像彩蛋中间文字",
+        "type": "string",
+        "default": "把世界的心跳，留在这片花田。",
+        "help": "点击萌版蕾塞后显示的短句。字号与地图花田画面相同。"
+      },
+      {
+        "key": "easterSloganMin",
+        "name": "彩蛋中间文字最小字号",
+        "type": "number",
+        "default": 1,
+        "help": "单位 rem，范围 0.8-8。两个彩蛋中间那句共用，小屏幕不会小于这个字号。"
+      },
+      {
+        "key": "easterSloganFluid",
+        "name": "彩蛋中间文字随屏字号",
+        "type": "number",
+        "default": 3,
+        "help": "单位 vw，范围 1-20。屏幕变宽时中间那句按这个比例变大，并被最小、最大字号夹住。"
+      },
+      {
+        "key": "easterSloganMax",
+        "name": "彩蛋中间文字最大字号",
+        "type": "number",
+        "default": 1.65,
+        "help": "单位 rem，范围 1-12。两个彩蛋中间那句共用，大屏幕不会超过这个字号。"
+      },
+      {
+        "key": "visitorInfoEnabled",
+        "name": "显示观众/管理员信息",
+        "type": "switch",
+        "default": false,
+        "help": "开启后显示底部 IP 状态条；宽屏左下角同时显示详情卡。访客称为“观众”，已登录管理员称为“管理员”。"
+      },
+      {
+        "key": "glassColorPreset",
+        "name": "卡片玻璃预设",
+        "type": "select",
+        "default": "蕾塞",
+        "options": "翡翠,柔和,高对比,蕾塞,自定义",
+        "help": "蕾塞预设采用暖金、奶油白与墨绿玻璃；也支持高对比或自定义配色。"
+      },
+      {
+        "key": "colorVisionMode",
+        "name": "色觉辅助配色",
+        "type": "select",
+        "default": "标准",
+        "options": "标准,色觉友好",
+        "help": "色觉友好使用蓝、蓝绿、橙、朱红、紫红，并为图表和状态增加线型、纹理、文字或图标区分。"
+      },
+      {
+        "key": "glassCustomColors",
+        "name": "自定义明亮/夜里玻璃 JSON",
+        "type": "richtext",
+        "default": "{\"lightCard\": \"#fff9eceb\", \"lightControl\": \"#fff9eceb\", \"lightText\": \"#293d30\", \"lightMutedText\": \"#626d5c\", \"lightBorder\": \"#d6c8a466\", \"darkCard\": \"#15231de6\", \"darkControl\": \"#15231deb\", \"darkText\": \"#f4efdf\", \"darkMutedText\": \"#b0bca9\", \"darkBorder\": \"#e7c58230\"}",
+        "help": "light*=明亮模式，dark*=夜里模式；Card=卡片，Control=控制条，Text=主文字，MutedText=次文字，Border=边框。支持 #RRGGBB 和带透明度的 #RRGGBBAA。"
+      },
+      {
+        "name": "03 · 首页总览指标",
+        "type": "title"
+      },
+      {
+        "key": "generalCardPreset",
+        "name": "首页总览指标方案",
+        "type": "select",
+        "default": "自定义",
+        "options": "官方,基础,运维,资源,财务,流量,GPU,资产,完整,自定义",
+        "help": "当前默认与前端六项指标一一对应：在线、内存、上行、硬盘、累计流量、下行。选择“自定义”后读取下方 keys。"
+      },
+      {
+        "key": "generalCardKeys",
+        "name": "自定义首页总览指标 keys",
+        "type": "richtext",
+        "default": "onlineNodes\navgCpu\nmemory\ntotalTraffic\nuploadSpeed\ndownloadSpeed",
+        "help": "以逗号或换行分隔。onlineNodes=在线；avgCpu=CPU；memory=内存；totalTraffic=累计流量；uploadSpeed=上行；downloadSpeed=下行。"
+      },
+      {
+        "name": "04 · 管理员工具与隐私",
+        "type": "title"
+      },
+      {
+        "key": "homeToolsEnabled",
+        "name": "登录后显示管理员工具",
+        "type": "switch",
+        "default": true,
+        "help": "管理员登录后，在顶部工具入口显示拓扑、性价比、健康、导出和审计功能。"
+      },
+      {
+        "key": "hideAdminEntryWhenLoggedOut",
+        "name": "隐藏后台入口",
+        "type": "switch",
+        "default": false,
+        "help": "未登录时隐藏顶部后台管理入口"
+      },
+      {
+        "key": "hidePriceWhenLoggedOut",
+        "name": "未登录隐藏价格",
+        "type": "switch",
+        "default": false,
+        "help": "未登录时隐藏服务器卡片/列表中的价格、剩余价值和费用类卡片；在线天数仍会显示"
+      },
+      {
+        "key": "providerAliases",
+        "name": "厂商自定义别名",
+        "type": "string",
+        "default": "",
+        "help": "格式：Provider:alias1,alias2;Provider2:alias。"
+      },
+      {
+        "key": "exportSecondaryPassword",
+        "name": "导出二级密码",
+        "type": "string",
+        "default": "",
+        "help": "仅用于客户端导出前确认，不是安全密码。设置通过公开 API 返回；请勿填写任何真实密码或密钥。"
+      },
+      {
+        "key": "disablePageAnimation",
+        "name": "减弱过渡动画",
+        "type": "switch",
+        "default": false,
+        "help": "减少页面过渡动画效果，提升访问速度和响应性"
+      },
+      {
+        "name": "05 · 服务器卡片、列表与快捷筛选",
+        "type": "title"
+      },
+      {
+        "key": "homeQuickControlsEnabled",
+        "name": "显示快捷筛选",
+        "type": "switch",
+        "default": true,
+        "help": "在服务器分组旁显示收藏、累计流量、峰值、离线、高负载、即将到期等快捷按钮。"
+      },
+      {
+        "key": "homeQuickControlPreset",
+        "name": "快捷控制方案",
+        "type": "select",
+        "default": "自定义",
+        "options": "基础,流量,运维,完整,自定义",
+        "help": "自定义时读取下方 keys。"
+      },
+      {
+        "key": "homeQuickControlKeys",
+        "name": "自定义快捷按钮 keys",
+        "type": "richtext",
+        "default": "favorite\nhighLoad\noffline\nexpiring",
+        "help": "逗号、空格或换行分隔。 favorite=收藏； totalTraffic=累计流量； upload=上行； download=下行； peak=峰值； offline=离线； highLoad=高负载； expiring=即将到期。"
+      },
+      {
+        "key": "nodeListMetadataEnabled",
+        "name": "列表信息栏",
+        "type": "switch",
+        "default": true,
+        "help": "在列表视图显示服务器信息栏；关闭后隐藏厂商、地区、ASN 和标签信息列。"
+      },
+      {
+        "key": "nodeListMetadataFields",
+        "name": "列表信息字段 keys",
+        "type": "richtext",
+        "default": "provider\nregion\nasn",
+        "help": "逗号、空格或换行分隔。 provider=厂商； region=地区； city=城市； asn=ASN； tags=自定义标签； group=分组。"
+      },
+      {
+        "key": "nodeListCustomTagsVisible",
+        "name": "列表显示自定义标签",
+        "type": "switch",
+        "default": true,
+        "help": "列表信息字段包含 tags 时，是否显示服务器自定义标签；无标签服务器不会显示空标签。"
+      },
+      {
+        "key": "offlineNodesLast",
+        "name": "离线服务器置底",
+        "type": "switch",
+        "default": true,
+        "help": "筛选或排序时优先显示在线服务器。"
+      },
+      {
+        "key": "homeHighLoadThreshold",
+        "name": "高负载阈值",
+        "type": "number",
+        "default": 80,
+        "help": "CPU、内存或硬盘占用达到该百分比时归为高负载（1-100）。"
+      },
+      {
+        "key": "homeTrafficWarningThreshold",
+        "name": "流量预警阈值",
+        "type": "number",
+        "default": 80,
+        "help": "服务器流量配额使用率达到该百分比时归为流量预警（1-100）。"
+      },
+      {
+        "key": "homeExpiringDays",
+        "name": "即将到期天数",
+        "type": "number",
+        "default": 30,
+        "help": "剩余天数小于等于该值时归为即将到期（1-3650 天）。"
+      },
+      {
+        "key": "diskPredictionEnabled",
+        "name": "启用磁盘耗尽预测",
+        "type": "switch",
+        "default": false,
+        "help": "基于负载历史里的磁盘用量趋势预测耗尽时间；样本少于 2 天或未增长时不显示"
+      },
+      {
+        "key": "diskPredictionThresholdDays",
+        "name": "磁盘预测预警天数",
+        "type": "number",
+        "default": 30,
+        "help": "预计剩余天数小于等于该值时在服务器卡片和详情负载图中显示提示（1-3650）"
+      },
+      {
+        "name": "06 · 服务器详情概览卡片",
+        "type": "title"
+      },
+      {
+        "key": "nodeDetailSectionTabsEnabled",
+        "name": "详情页分区标签页",
+        "type": "switch",
+        "default": false,
+        "help": "默认关闭，保持服务器详情页纵向连续展示；开启后按概览、负载、延迟分区显示。"
+      },
+      {
+        "key": "detailMetricCardPreset",
+        "name": "详情概览卡片方案",
+        "type": "select",
+        "default": "资源",
+        "options": "财务,状态,资源,网络,GPU,综合,自定义",
+        "help": "宽屏每行 4 张，中屏 3 张，移动端 2 张。财务/状态/网络/GPU=8 张；资源=12 张；综合=16 张；自定义读取下方 keys。"
+      },
+      {
+        "key": "detailMetricCardKeys",
+        "name": "自定义详情卡片 keys",
+        "type": "richtext",
+        "default": "nodePrice\nmonthlyCost\nremainingTime\nremainingValue\ntotalTraffic\ntrafficQuota\nuptime\nconnections",
+        "help": "逗号、空格或换行分隔。 nodePrice=服务器价格； monthlyCost=月均支出； remainingTime=剩余时间； remainingValue=剩余价值； cpuUsage=CPU使用率； gpuUsage=GPU使用率； memoryUsage=内存使用率； swapUsage=交换内存使用率； diskUsage=硬盘使用率； load=系统负载； temperature=系统温度； processes=进程数； connections=连接数； uptime=运行时间； uploadSpeed=实时上行； downloadSpeed=实时下行； totalTraffic=累计流量； trafficQuota=流量配额。"
+      },
+      {
+        "name": "07 · 服务器详情监控图表",
+        "type": "title"
+      },
+      {
+        "key": "gpuChartEnabled",
+        "name": "显示 GPU 指标图",
+        "type": "switch",
+        "default": false,
+        "help": "控制 GPU 利用率、设备、显存和 GPU 温度序列；无 GPU 数据时自动隐藏。"
+      },
+      {
+        "key": "chartDashboardPreset",
+        "name": "详情负载图方案",
+        "type": "select",
+        "default": "默认",
+        "options": "默认,精简,资源,网络,GPU,延迟,运维,完整,自定义",
+        "help": "资源、网络、GPU、延迟和运维按指标族组合；完整覆盖官方 25 个指标。自定义读取下方 keys。"
+      },
+      {
+        "key": "chartDashboardTemplate",
+        "name": "自定义详情图表 keys",
+        "type": "richtext",
+        "default": "cpu\nmemory\ndisk\nnetwork\ngpu\nconnections\nprocess",
+        "help": "逗号、空格或换行分隔。 cpu=CPU/负载； memory=RAM/Swap及总量； disk=磁盘/总量； network=实时上下行； traffic=累计与周期流量； gpu=GPU/设备利用率； gpuMemory=GPU显存/总量； temperature=系统/GPU温度； connections=TCP/UDP； process=进程； ping=Ping延迟； pingLoss=Ping丢包。旧 JSON 仍兼容。"
+      },
+      {
+        "name": "08 · 明亮/夜里自定义背景",
+        "type": "title"
+      },
+      {
+        "key": "backgroundEnabled",
+        "name": "启用自定义模式背景",
+        "type": "switch",
+        "default": false,
+        "help": "开启后使用下方地址替换主题内置的蕾塞花田原图；每种模式可单独设置。"
+      },
+      {
+        "key": "backgroundType",
+        "name": "自定义背景素材类型",
+        "type": "select",
+        "default": "image",
+        "options": "image,video",
+        "help": "image=静态背景图片；video=自动静音循环的背景视频。"
+      },
+      {
+        "key": "lightBackgroundUrl",
+        "name": "明亮模式背景地址",
+        "type": "string",
+        "default": "",
+        "help": "留空使用内置蕾塞花田原图。支持 HTTPS 地址、站内 / 路径；持久本地文件放入 data/theme/user-assets/ 后填写 local:文件名。"
+      },
+      {
+        "key": "darkBackgroundUrl",
+        "name": "夜里模式背景地址",
+        "type": "string",
+        "default": "",
+        "help": "留空使用内置蕾塞花田原图。支持 HTTPS 地址、站内 / 路径；持久本地文件放入 data/theme/user-assets/ 后填写 local:文件名。"
+      },
+      {
+        "key": "backgroundBlur",
+        "name": "自定义背景模糊半径",
+        "type": "number",
+        "default": 0,
+        "help": "对自定义背景素材应用高斯模糊，单位：px；0 表示不模糊。"
+      },
+      {
+        "key": "backgroundOverlay",
+        "name": "自定义背景遮罩强度",
+        "type": "number",
+        "default": 0,
+        "help": "范围 -100 到 100；0 不处理，正数叠加黑色遮罩，负数降低背景素材不透明度。"
+      },
+      {
+        "name": "09 · 蕾塞与花田文案",
+        "type": "title"
+      },
+      {
+        "key": "rezeCompanionEnabled",
+        "name": "显示萌版蕾塞",
+        "type": "switch",
+        "default": true
+      },
+      {
+        "key": "rezeHeroEnabled",
+        "name": "显示首页花田主视觉",
+        "type": "switch",
+        "default": true
+      },
+      {
+        "key": "rezeHeroTitle",
+        "name": "首页标题",
+        "type": "string",
+        "default": "花开有时，连接不息。"
+      },
+      {
+        "key": "rezeHeroDescription",
+        "name": "首页副标题",
+        "type": "string",
+        "default": "在花田的另一端，听见每一台服务器的心跳。"
+      },
+      {
+        "key": "rezeFooterText",
+        "name": "页脚短句",
+        "type": "string",
+        "default": "每一次连接，都是一次温柔的回应。"
+      },
+      {
+        "name": "10 · 蕾塞玻璃面板",
+        "type": "title"
+      },
+      {
+        "key": "rezeGlassTransparency",
+        "name": "探针框默认透明度",
+        "type": "number",
+        "default": 32,
+        "help": "范围 0-100%。0 为实色，100 为完全透明。只影响面板背景，文字保持清晰。访客可以在外观面板中为自己的浏览器覆盖此值。"
+      },
+      {
+        "key": "rezeGlassBlur",
+        "name": "默认毛玻璃模糊",
+        "type": "number",
+        "default": 20,
+        "help": "范围 0-40 px。0 关闭模糊；同时支持标准和 WebKit backdrop-filter。访客可以本地调整。 触屏设备使用透明底色，优先保持滑动流畅。"
+      },
+      {
+        "key": "rezeBackgroundVisibility",
+        "name": "默认背景显影",
+        "type": "number",
+        "default": 50,
+        "help": "范围 0-100%。数值越高，花田背景越清楚。与卡片透明度和模糊独立调整。"
+      },
+      {
+        "name": "11 · 服务器地区连线",
+        "type": "title"
+      },
+      {
+        "key": "rezeMapConnectionsEnabled",
+        "name": "显示服务器地区汇向中国的连线",
+        "type": "switch",
+        "default": true,
+        "help": "按服务器地区绘制连接示意：在线流光、部分离线琥珀色、全部离线静态虚线。访客可在外观设置中本地关闭；减少动画时保留静态连线。"
+      }
+    ],
+    "icon": "/themes/Reze/dist/images/reze/favicon.svg"
+  }
+}
