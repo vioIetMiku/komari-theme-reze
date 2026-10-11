@@ -16,7 +16,7 @@
 
 > 请下载上面的主题安装包，而不是 GitHub 自动生成的 `Source code (zip)`。安装包根目录直接包含 `komari-theme.json`、`preview.png` 和 `dist/`。
 >
-> 本项目是第三方主题，非 Komari 或蕾塞角色的官方产品；需要已有的 Komari 服务。本仓库目前发布的是可安装的构建产物，不包含原始 Vue/TypeScript 工程，不能据此宣称完整源码开源。
+> 本项目是第三方主题，非 Komari 或蕾塞角色的官方产品；需要已有的 Komari 服务。
 
 ![蕾塞主题包内预览图](preview.png)
 
